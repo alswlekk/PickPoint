@@ -11,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.LightPrototypePrimaryColor
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
@@ -36,12 +38,12 @@ fun TopMenu(
         ) {
             NavigationItem(
                 icon = Icons.Filled.Settings,
-                text = "Settings",
+                text = stringResource(R.string.settings),
                 onClick = onSettingsClick
             )
             NavigationItem(
                 icon = Icons.Default.Info,
-                text = "Report",
+                text = stringResource(R.string.report),
                 onClick = onReportClick
             )
         }

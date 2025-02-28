@@ -30,6 +30,8 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.MainTopAppBar
 import com.pickpoint.pickpoint.ui.home.component.TopMenu
 import com.pickpoint.pickpoint.ui.theme.AppTheme
@@ -68,11 +70,11 @@ fun HomeScreen(
                     .background(MaterialTheme.colorScheme.background),
             ) {
                 MainTopAppBar(
-                    title = "Pick Point",
+                    title = stringResource(R.string.pick_point),
                     leftIcon = {
                         Icon(
                             imageVector = Icons.Filled.Menu,
-                            contentDescription = "Menu",
+                            contentDescription = stringResource(R.string.menu),
                             tint = MaterialTheme.colorScheme.secondary
                         )
                     },
@@ -88,17 +90,17 @@ fun HomeScreen(
                 ) {
                     HomeButton(
                         onClick = { onNavigateToRandomPicker() },
-                        "Random Picker"
+                        stringResource(R.string.random_picker)
                     )
                     Spacer(modifier = Modifier.padding(24.dp))
                     HomeButton(
                         onClick = { onNavigateToTeamMaker() },
-                        "Team Maker"
+                        stringResource(R.string.team_maker)
                     )
                     Spacer(modifier = Modifier.padding(24.dp))
                     HomeButton(
                         onClick = { onNavigateToWhatToDo() },
-                        "What To Do"
+                        stringResource(R.string.what_to_do)
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
