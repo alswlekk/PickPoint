@@ -68,7 +68,7 @@ fun WTDSettingContent(
                 .padding(horizontal = 20.dp)
                 .align(Alignment.BottomCenter),
             reset = { reset() },
-            confirm = { confirm() }
+            apply = { confirm() }
         )
     }
 }

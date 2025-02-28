@@ -88,7 +88,7 @@ fun SettingsScreen(
             // 리셋 및 확인 버튼
             ResetConfirmButton(
                 reset = { viewModel.resetSettings() },
-                confirm = { viewModel.saveSettings() }
+                apply = { viewModel.saveSettings() }
             )
 
             Spacer(modifier = Modifier.padding(15.dp))

@@ -31,7 +31,7 @@ import com.pickpoint.pickpoint.ui.theme.robotoFontFamily
 fun ResetConfirmButton(
     modifier: Modifier = Modifier,
     reset: () -> Unit,
-    confirm: () -> Unit
+    apply: () -> Unit
 ) {
     Row(
         modifier = modifier.padding(10.dp),
@@ -64,7 +64,7 @@ fun ResetConfirmButton(
         }
 
         Button(
-            onClick = { confirm() },
+            onClick = { apply() },
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.onPrimary,
                 contentColor = MaterialTheme.colorScheme.background,
@@ -77,12 +77,12 @@ fun ResetConfirmButton(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_check),
-                contentDescription = "Confirm",
+                contentDescription = "Apply",
                 tint = MaterialTheme.colorScheme.background
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Confirm",
+                text = "Apply",
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.background
             )
@@ -98,6 +98,6 @@ fun ResetConfirmButtonPreview() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
         ResetConfirmButton(
             reset = { /* Handle reset click */ },
-            confirm = { /* Handle confirm click */ })
+            apply = { /* Handle apply click */ })
     }
 }

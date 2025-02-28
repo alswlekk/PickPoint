@@ -43,7 +43,7 @@ fun RetryButton(
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_retry),
-            contentDescription = "Cancel",
+            contentDescription = "Retry",
             tint = MaterialTheme.colorScheme.background
         )
         Spacer(modifier = Modifier.width(8.dp))
