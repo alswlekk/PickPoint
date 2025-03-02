@@ -30,4 +30,14 @@
     <string name="language">Language</string>
     <string name="preferences">Preferences</string>
 
+    <!-- Team Maker / RandomPicker -->
+    <!-- Setting Content -->
+    <string name="points_to_pick">Points to Pick</string>
+    <!-- Game Component -->
+    <string name="retry">Retry</string>
+    <!-- Try Again -->
+    <string name="try_again">Try Again?</string>
+    <!-- Screen -->
+    <string name="game_settings">Game Settings</string>
+
 </resources>
