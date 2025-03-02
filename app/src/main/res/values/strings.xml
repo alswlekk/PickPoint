@@ -4,7 +4,7 @@
     <!--  Theme Setting  -->
     <string name="prototype">prototype</string>
     <string name="coming_soon">coming soon…</string>
-    
+
     <!--  Language Setting  -->
     <string name="korean">한국어 (대한민국)</string>
     <string name="english">English</string>
@@ -13,5 +13,21 @@
     <!--  Preferences Setting  -->
     <string name="remember_previous_settings">Remember Previous Settings</string>
     <string name="some_settings">Some Settings</string>
-    
+
+    <!--  HomeTopMenu  -->
+    <string name="settings">Settings</string>
+    <string name="report">Report</string>
+
+    <!--  HomeScreen  -->
+    <string name="pick_point">Pick Point</string>
+    <string name="menu">Menu</string>
+    <string name="random_picker">Random Picker</string>
+    <string name="team_maker">Team Maker</string>
+    <string name="what_to_do">What To Do</string>
+
+    <!--  SettingScreen -->
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="preferences">Preferences</string>
+
 </resources>
