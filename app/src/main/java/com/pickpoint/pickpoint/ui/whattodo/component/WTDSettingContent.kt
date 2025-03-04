@@ -63,7 +63,6 @@ fun WTDSettingContent(
 
         ResetConfirmButton(
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(bottom = 14.dp)
                 .padding(horizontal = 20.dp)
                 .align(Alignment.BottomCenter),
