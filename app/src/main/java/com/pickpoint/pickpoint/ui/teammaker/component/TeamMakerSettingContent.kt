@@ -1,8 +1,10 @@
 package com.pickpoint.pickpoint.ui.teammaker.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -49,16 +51,18 @@ fun TeamMakerSettingContent(
             )
 
         }
-        ResetConfirmButton(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 14.dp)
-                .padding(horizontal = 35.dp)
-                .align(Alignment.BottomCenter),
-            reset = { reset() },
-            apply = { apply() }
-
-        )
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            ResetConfirmButton(
+                reset = { reset() },
+                apply = { apply() }
+            )
+        }
     }
 }
 
