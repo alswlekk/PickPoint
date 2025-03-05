@@ -111,6 +111,58 @@ fun SecondaryTopAppBar(
     }
 }
 
+@Composable
+fun RandomPickerTopAppBar(
+    modifier: Modifier = Modifier,
+    title : String,
+    onBackClick : () -> Unit,
+    onSettingClick : () -> Unit
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(56.dp),
+        color = MaterialTheme.colorScheme.background,
+        shadowElevation = 4.dp
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(
+                onClick = onBackClick,
+                modifier = Modifier.size(24.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.secondary
+                )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = title,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.padding(end = 20.dp),
+                style = MaterialTheme.typography.titleLarge
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(
+                onClick = onSettingClick,
+                modifier = Modifier
+                    .size(48.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_main_top_setting),
+                    contentDescription = "Setting",
+                    tint = MaterialTheme.colorScheme.secondary
+                )
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun MainTopAppBarPreview() {
@@ -140,6 +192,18 @@ fun MainTopAppBarPreview() {
 fun SecondaryTopAppBarPreview() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
         SecondaryTopAppBar(title = "Settings", onNavigationClick = {})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RandomPickerTopAppBarPreview() {
+    PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
+        RandomPickerTopAppBar(
+            title = "Random Picker",
+            onBackClick = {},
+            onSettingClick = {}
+        )
     }
 }
 

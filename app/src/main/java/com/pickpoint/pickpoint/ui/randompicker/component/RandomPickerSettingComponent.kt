@@ -14,8 +14,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.NumberSettingComponent
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
 import com.pickpoint.pickpoint.ui.theme.AppTheme
@@ -41,7 +43,7 @@ fun RandomPickerSettingContent(
                 modifier = Modifier
                     .padding(top = 30.dp)
                     .padding(horizontal = 20.dp),
-                label = "Points to Pick",
+                label = stringResource(id = R.string.points_to_pick),
                 currentNumber = pointsToPick,
                 onPlusButtonClick = { pointsToPickPlus() },
                 onMinusButtonClick = { pointsToPickMinus() }

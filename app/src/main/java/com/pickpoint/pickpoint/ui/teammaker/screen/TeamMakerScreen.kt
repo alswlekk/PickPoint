@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.MainTopAppBar
@@ -37,7 +38,7 @@ fun TeamMakerScreen(
         topBar = {
             if (confirmed) {
                 MainTopAppBar(
-                    title = "Team Maker",
+                    title = stringResource(id = R.string.team_maker),
                     leftIcon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_main_top_back),
@@ -55,7 +56,7 @@ fun TeamMakerScreen(
                 )
             } else {
                 SecondaryTopAppBar(
-                    title = "Game Settings",
+                    title = stringResource(id = R.string.game_settings),
                     onNavigationClick = onNavigateBack
                 )
             }
