@@ -39,5 +39,6 @@
     <string name="try_again">Try Again?</string>
     <!-- Screen -->
     <string name="game_settings">Game Settings</string>
+    <string name="total_teams">Total Teams</string>
 
 </resources>
