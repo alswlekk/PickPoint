@@ -40,7 +40,7 @@ fun TeamMakerSettingContent(
                 modifier = Modifier
                     .padding(top = 30.dp)
                     .padding(horizontal = 20.dp),
-                label = "Points to Pick",
+                label = "Total Teams",
                 currentNumber = pointsToPick,
                 onPlusButtonClick = { pointsToPickPlus() },
                 onMinusButtonClick = { pointsToPickMinus() }

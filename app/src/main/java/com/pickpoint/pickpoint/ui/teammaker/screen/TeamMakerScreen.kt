@@ -30,7 +30,7 @@ fun TeamMakerScreen(
 ) {
 
     var totalCount by remember { mutableIntStateOf(4) }
-    var pointsToPick by remember { mutableIntStateOf(1) }
+    var pointsToPick by remember { mutableIntStateOf(2) }
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -69,11 +69,11 @@ fun TeamMakerScreen(
                     if (pointsToPick < 10) pointsToPick += 1
                 },
                 pointsToPickMinus = {
-                    if (pointsToPick > 1) pointsToPick -= 1
+                    if (pointsToPick > 2) pointsToPick -= 1
                 },
                 reset = {
                     totalCount = 4
-                    pointsToPick = 1
+                    pointsToPick = 2
                 },
                 apply = { confirmed = true }
             )
