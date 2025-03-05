@@ -56,13 +56,13 @@ fun WTDBottomSheetContent(
                 .padding(horizontal = 30.dp)
         ) {
             Box(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Results",
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.align(Alignment.Center)
                 )
 
                 Box(
@@ -75,14 +75,13 @@ fun WTDBottomSheetContent(
                             coroutineScope.launch {
                                 clipboard.setClipEntry(clipData.toClipEntry())
                             }
-                        }
+                        },
+                    contentAlignment = Alignment.Center
                 ){
                     Icon(
                         painter = painterResource(id = R.drawable.ic_content_copy),
                         contentDescription = "Copy",
                         tint = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier
-                            .align(Alignment.Center)
                     )
                 }
             }
