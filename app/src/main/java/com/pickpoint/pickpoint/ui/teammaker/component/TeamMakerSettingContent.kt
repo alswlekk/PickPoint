@@ -53,16 +53,7 @@ fun TeamMakerSettingContent(
         }
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 20.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            ResetConfirmButton(
-                reset = { reset() },
-                apply = { apply() }
-            )
-        }
+
     }
 }
 
