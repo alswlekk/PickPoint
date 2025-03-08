@@ -61,4 +61,9 @@ class WhatToDoViewmodel : ViewModel() {
         _resultList.value = mutableListOf("", "", "", "")
     }
 
+    fun onSettingClick() {
+        _isConfirmed.value = false
+        _randomColors.value = randomColors.value.getRandomElements(count = count.value)
+    }
+
 }
