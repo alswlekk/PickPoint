@@ -1,6 +1,7 @@
 package com.pickpoint.pickpoint.ui.home.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -48,14 +49,14 @@ fun SettingsScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(rememberScrollState())
         ) {
             SecondaryTopAppBar(
                 title = stringResource(R.string.settings),
