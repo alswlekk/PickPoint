@@ -20,6 +20,8 @@ import com.pickpoint.pickpoint.ui.home.viewmodel.HomeViewModel
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 import androidx.compose.runtime.*
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -105,27 +107,37 @@ fun HomeScreen(
                 }
                 Spacer(modifier = Modifier.weight(1f))
             }
-        }
 
-        // TopMenu as dropdown
-        AnimatedVisibility(
-            visible = menuExpanded,
-            enter = slideInVertically() + fadeIn(),
-            exit = slideOutVertically() + fadeOut(),
-            modifier = Modifier
+            // TopMenu 애니메이션 수정
+            Box(modifier = Modifier
                 .align(Alignment.TopStart)
                 .padding(top = 64.dp, start = 12.dp)
-        ) {
-            TopMenu(
-                onReportClick = {
-                    onNavigateToReport()
-                    menuExpanded = false
-                },
-                onSettingsClick = {
-                    onNavigateToSettings()
-                    menuExpanded = false
+            ) {
+                AnimatedVisibility(
+                    visible = menuExpanded,
+                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) +
+                            slideInVertically(
+                                initialOffsetY = { -it / 2 },
+                                animationSpec = tween(durationMillis = 400, easing = FastOutSlowInEasing)
+                            ),
+                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) +
+                            slideOutVertically(
+                                targetOffsetY = { -it / 2 },
+                                animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing)
+                            )
+                ) {
+                    TopMenu(
+                        onReportClick = {
+                            onNavigateToReport()
+                            menuExpanded = false
+                        },
+                        onSettingsClick = {
+                            onNavigateToSettings()
+                            menuExpanded = false
+                        }
+                    )
                 }
-            )
+            }
         }
     }
 }

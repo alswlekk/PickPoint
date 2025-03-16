@@ -26,14 +26,14 @@ fun TopMenu(
     onSettingsClick: () -> Unit
 ) {
     Surface(
-        modifier = modifier.size(112.dp),
+        modifier = modifier.size(130.dp),
         shape = MaterialTheme.shapes.large,
         shadowElevation = 4.dp
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .background(MaterialTheme.colorScheme.primary)
-                .padding(vertical = 8.dp),
+                .padding(vertical = 9.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NavigationItem(
@@ -60,8 +60,8 @@ private fun NavigationItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .clickable(onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 6.dp)
-            .size(88.dp, 40.dp)
+            .padding(horizontal = 14.dp, vertical = 7.dp)
+            .size(101.dp, 46.dp)
             .fillMaxWidth()
     ) {
         Icon(
@@ -70,7 +70,7 @@ private fun NavigationItem(
             tint = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier.size(18.dp)
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(10.dp))
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge,
