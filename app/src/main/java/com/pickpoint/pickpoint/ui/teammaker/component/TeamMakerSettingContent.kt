@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.NumberSettingComponent
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
-import com.pickpoint.pickpoint.ui.common.component.ResultsComponent
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
@@ -65,7 +64,6 @@ fun TeamMakerSettingContent(
                 apply = { apply() }
             )
         }
-
     }
 }
 
