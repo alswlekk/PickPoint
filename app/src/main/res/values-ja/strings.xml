@@ -12,15 +12,11 @@
     <string name="japanese">日本語</string>
 
     <!--  Preferences Setting  -->
-    <string name="remember_previous_settings">前回の設定を記憶する</string>
-    <string name="some_settings">いくつかの設定</string>
-
     <string name="dark_mode">ダークモード</string>
     <string name="settings">設定</string>
     <string name="app_theme">アプリのテーマ</string>
     <string name="point_theme">ポイントのテーマ</string>
     <string name="language">言語</string>
-    <string name="preferences">環境設定</string>
 
     <!-- 다른 문자열들... -->
     <string name="reset">Reset</string>
@@ -39,6 +35,7 @@
     <!-- Team Maker / RandomPicker / WhatToDo -->
     <!-- Setting Content -->
     <string name="points_to_pick">選択するポイント</string>
+    <string name="total_teams">チームの合計数</string>
     <string name="total_tasks">Total Tasks</string>
     <!-- Game Component -->
     <string name="retry">再試行</string>
@@ -48,7 +45,6 @@
     <string name="try_again">もう一度試しますか？</string>
     <!-- Screen -->
     <string name="game_settings">ゲーム設定</string>
-    <string name="total_teams">チームの合計数</string>
     <string name="tap_to_start">タップして開始！</string>
 
 </resources>
