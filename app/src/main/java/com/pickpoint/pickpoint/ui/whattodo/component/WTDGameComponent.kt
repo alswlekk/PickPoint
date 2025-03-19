@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.pickpoint.pickpoint.ui.common.component.CircleButton
+import com.pickpoint.pickpoint.ui.common.component.TapToStartComponent
 import com.pickpoint.pickpoint.ui.common.util.getPointColorList
 import com.pickpoint.pickpoint.ui.common.util.timerStartHandler
 import com.pickpoint.pickpoint.ui.theme.AppTheme
@@ -87,7 +88,7 @@ fun WTDGameComponent(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             // pointerInput을 이용해 터치 이벤트를 감지
@@ -124,6 +125,14 @@ fun WTDGameComponent(
                 }
             }
     ) {
+        // 게임 시작 전 Tap to Start 표시
+        if (touchPoints.isEmpty() && isGameActive){
+            TapToStartComponent(
+                modifier = modifier
+                    .align(Alignment.Center)
+            )
+        }
+
         // 현재 활성화된 각 터치에 대해 Point composable 표시
         if (isGameActive) {
             touchPoints.forEach { (_, data) ->
