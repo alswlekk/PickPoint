@@ -101,7 +101,7 @@ fun TeamMakerGameComponent(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             // pointerInput을 이용해 터치 이벤트를 감지
@@ -138,7 +138,7 @@ fun TeamMakerGameComponent(
         // 게임 시작 전 Tap to Start 표시
         if (touchPoints.isEmpty() && isGameActive){
             TapToStartComponent(
-                modifier = modifier
+                modifier = Modifier
                     .align(Alignment.Center)
             )
         }

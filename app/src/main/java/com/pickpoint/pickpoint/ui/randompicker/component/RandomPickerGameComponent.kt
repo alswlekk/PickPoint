@@ -90,7 +90,7 @@ fun RandomPickerGameComponent(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             // pointerInput을 이용해 터치 이벤트를 감지
@@ -124,19 +124,33 @@ fun RandomPickerGameComponent(
                 }
             }
     ) {
-        // 게임 시작 전 Tap to Start 표시
-        if (touchPoints.isEmpty() && isGameActive){
-            TapToStartComponent(
-                modifier = modifier
-                    .align(Alignment.Center)
-            )
-        }
+            // 게임 시작 전 Tap to Start 표시
+            if (touchPoints.isEmpty() && isGameActive) {
+                TapToStartComponent(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                )
+            }
 
-        // 현재 활성화된 각 터치에 대해 Point composable 표시
-        if (isGameActive) {
-            touchPoints.forEach { (_, data) ->
-                val (position, color) = data
-                // offset을 이용해 터치한 위치에 Point를 배치
+            // 현재 활성화된 각 터치에 대해 Point composable 표시
+            if (isGameActive) {
+                touchPoints.forEach { (_, data) ->
+                    val (position, color) = data
+                    // offset을 이용해 터치한 위치에 Point를 배치
+                    CircleButton(
+                        modifier = Modifier.offset {
+                            IntOffset(
+                                (position.x - (pointSize / 2).dp.toPx()).roundToInt(),
+                                (position.y - (pointSize / 2).dp.toPx()).roundToInt()
+                            )
+                        },
+                        pointSize = pointSize,
+                        color = color,
+                    )
+                }
+            }
+            // 카운트다운 끝난 후 결과 Point 표시
+            resultPoints.forEach { (position, color) ->
                 CircleButton(
                     modifier = Modifier.offset {
                         IntOffset(
@@ -148,35 +162,19 @@ fun RandomPickerGameComponent(
                     color = color,
                 )
             }
-        }
-        // 카운트다운 끝난 후 결과 Point 표시
-        resultPoints.forEach { (position, color) ->
-            CircleButton(
-                modifier = Modifier.offset {
-                    IntOffset(
-                        (position.x - (pointSize / 2).dp.toPx()).roundToInt(),
-                        (position.y - (pointSize / 2).dp.toPx()).roundToInt()
-                    )
-                },
-                pointSize = pointSize,
-                color = color,
-            )
-        }
-        // 카운트다운 표시
-        countdown?.let {
-            Text(
-                text = it.toString(),
-                style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.align(Alignment.Center)
-            )
-        }
-
-        if (showResultDialog) {
-            resultDialog?.invoke(resetGame)
-        }
+            // 카운트다운 표시
+            countdown?.let {
+                Text(
+                    text = it.toString(),
+                    style = MaterialTheme.typography.displayLarge,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+            }
+            if (showResultDialog) {
+                resultDialog?.invoke(resetGame)
+            }
     }
-
 }
 
 

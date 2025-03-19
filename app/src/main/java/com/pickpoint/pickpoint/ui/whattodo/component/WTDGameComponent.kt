@@ -88,7 +88,7 @@ fun WTDGameComponent(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             // pointerInput을 이용해 터치 이벤트를 감지
