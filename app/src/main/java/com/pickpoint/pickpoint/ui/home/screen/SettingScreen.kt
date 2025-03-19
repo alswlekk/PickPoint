@@ -27,6 +27,7 @@ import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
 import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
+import com.pickpoint.pickpoint.ui.common.component.SettingSwitch
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
@@ -37,7 +38,8 @@ fun SettingsScreen(
     onNavigateBack: () -> Unit = {}
 ) {
 
-    val themeIndex = viewModel!!.themeSettingIndex.collectAsStateWithLifecycle()
+    val appTheme = viewModel!!.appThemeSetting.collectAsStateWithLifecycle()
+    val pointThemeIndex = viewModel.pointThemeSettingIndex.collectAsStateWithLifecycle()
     val languageIndex = viewModel.languageSettingIndex.collectAsStateWithLifecycle()
 
     Box(
@@ -59,14 +61,20 @@ fun SettingsScreen(
             )
             Spacer(modifier = Modifier.padding(15.dp))
 
-
+            // App Theme 설정
+            SettingSwitch(
+                title = stringResource(id = R.string.app_theme),
+                mode = appTheme.value,
+                onClick = { viewModel.reverseAppThemeSetting(it) }
+            )
+            Spacer(modifier = Modifier.padding(15.dp))
 
             // Point 설정
             SettingComponent(
-                title = stringResource(id = R.string.theme),
+                title = stringResource(id = R.string.point_theme),
                 settingRes = PointThemeSetting.entries.map { it.res },
-                checkedIndex = themeIndex.value,
-                onClick = { viewModel.updateThemeSettingIndex(it) }
+                checkedIndex = pointThemeIndex.value,
+                onClick = { viewModel.updatePointThemeSettingIndex(it) }
             )
             Spacer(modifier = Modifier.padding(15.dp))
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.pickpoint.pickpoint.ui.common.util.DataStoreManager
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
 import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
+import com.pickpoint.pickpoint.ui.theme.AppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -21,8 +22,11 @@ class SettingViewModel(
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
-    private val _themeSettingIndex = MutableStateFlow<Int>(0)
-    val themeSettingIndex: StateFlow<Int> = _themeSettingIndex
+    private val _appThemeSetting = MutableStateFlow(AppTheme.LIGHT_PROTOTYPE)
+    val appThemeSetting: StateFlow<AppTheme> = _appThemeSetting
+
+    private val _pointThemeSettingIndex = MutableStateFlow<Int>(0)
+    val pointThemeSettingIndex: StateFlow<Int> = _pointThemeSettingIndex
 
     private val _languageSettingIndex = MutableStateFlow<Int>(0)
     val languageSettingIndex: StateFlow<Int> = _languageSettingIndex
@@ -58,7 +62,12 @@ class SettingViewModel(
             }
 
             dataStoreManager.saveAllSettings(
-                when (_themeSettingIndex.value) {
+                when (_appThemeSetting.value) {
+                    AppTheme.LIGHT_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE
+                    AppTheme.DARK_PROTOTYPE -> AppTheme.DARK_PROTOTYPE
+                },
+
+                when (_pointThemeSettingIndex.value) {
                     PointThemeSetting.PROTOTYPE.index -> PointThemeSetting.PROTOTYPE
                     PointThemeSetting.COMING_SOON.index -> PointThemeSetting.COMING_SOON
                     else -> PointThemeSetting.PROTOTYPE
@@ -77,18 +86,29 @@ class SettingViewModel(
     private fun loadSettings() {
         viewModelScope.launch {
             combine(
-                dataStoreManager.getThemeSetting(),
+                dataStoreManager.getAppThemeSetting(),
+                dataStoreManager.getPointThemeSetting(),
                 dataStoreManager.getLanguageSetting(),
-            ) { theme, language ->
-                Pair(theme, language)
-            }.collect { (theme, language) ->
-                when (theme) {
+            ) { appTheme, pointTheme, language ->
+                Triple(appTheme, pointTheme, language)
+            }.collect { (appTheme, pointTheme, language) ->
+                when (appTheme) {
+                    AppTheme.LIGHT_PROTOTYPE -> {
+                        _appThemeSetting.value = AppTheme.LIGHT_PROTOTYPE
+                    }
+
+                    AppTheme.DARK_PROTOTYPE -> {
+                        _appThemeSetting.value = AppTheme.DARK_PROTOTYPE
+                    }
+                }
+
+                when (pointTheme) {
                     PointThemeSetting.PROTOTYPE -> {
-                        _themeSettingIndex.value = PointThemeSetting.PROTOTYPE.index
+                        _pointThemeSettingIndex.value = PointThemeSetting.PROTOTYPE.index
                     }
 
                     PointThemeSetting.COMING_SOON -> {
-                        _themeSettingIndex.value = PointThemeSetting.COMING_SOON.index
+                        _pointThemeSettingIndex.value = PointThemeSetting.COMING_SOON.index
                     }
 
                 }
@@ -111,8 +131,15 @@ class SettingViewModel(
         }
     }
 
-    fun updateThemeSettingIndex(index: Int) {
-        _themeSettingIndex.value = index
+    fun reverseAppThemeSetting(isDarkMode: Boolean) {
+        _appThemeSetting.value =
+            if (isDarkMode) AppTheme.DARK_PROTOTYPE
+            else AppTheme.LIGHT_PROTOTYPE
+
+    }
+
+    fun updatePointThemeSettingIndex(index: Int) {
+        _pointThemeSettingIndex.value = index
     }
 
     fun updateLanguageSettingIndex(index: Int) {

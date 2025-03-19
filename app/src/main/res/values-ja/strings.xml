@@ -15,6 +15,7 @@
     <string name="remember_previous_settings">前回の設定を記憶する</string>
     <string name="some_settings">いくつかの設定</string>
 
+    <string name="dark_mode">ダークモード</string>
     <string name="settings">設定</string>
     <string name="app_theme">アプリのテーマ</string>
     <string name="point_theme">ポイントのテーマ</string>

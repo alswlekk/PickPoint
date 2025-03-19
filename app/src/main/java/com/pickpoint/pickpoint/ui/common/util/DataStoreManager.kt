@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
 import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
+import com.pickpoint.pickpoint.ui.theme.AppTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -16,15 +17,21 @@ private val Context.dataStore by preferencesDataStore(name = "dataStore")
 
 class DataStoreManager(private val context: Context) {
 
-    private val themeKey = stringPreferencesKey("theme")
+    private val appThemeKey = stringPreferencesKey("app_theme")
+    private val pointThemeKey = stringPreferencesKey("point_theme")
     private val languageKey = stringPreferencesKey("language")
 
     suspend fun saveAllSettings(
+        appThemeSetting: AppTheme,
         pointThemeSetting: PointThemeSetting,
         languageSetting: LanguageSetting,
     ) {
         context.dataStore.edit { preferences ->
-            preferences[themeKey] = when (pointThemeSetting) {
+            preferences[appThemeKey] = when (appThemeSetting) {
+                AppTheme.LIGHT_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE.name
+                AppTheme.DARK_PROTOTYPE -> AppTheme.DARK_PROTOTYPE.name
+            }
+            preferences[pointThemeKey] = when (pointThemeSetting) {
                 PointThemeSetting.PROTOTYPE -> PointThemeSetting.PROTOTYPE.value
                 PointThemeSetting.COMING_SOON -> PointThemeSetting.COMING_SOON.value
             }
@@ -36,7 +43,25 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    fun getThemeSetting(): Flow<PointThemeSetting> {
+    fun getAppThemeSetting(): Flow<AppTheme> {
+        return context.dataStore.data
+            .catch { exception ->
+                if (exception is IOException) {
+                    emit(emptyPreferences())
+                } else {
+                    throw exception
+                }
+            }
+            .map { preferences ->
+                when (preferences[appThemeKey]) {
+                    AppTheme.LIGHT_PROTOTYPE.name -> AppTheme.LIGHT_PROTOTYPE
+                    AppTheme.DARK_PROTOTYPE.name -> AppTheme.DARK_PROTOTYPE
+                    else -> AppTheme.LIGHT_PROTOTYPE
+                }
+            }
+    }
+
+    fun getPointThemeSetting(): Flow<PointThemeSetting> {
 
         return context.dataStore.data
             .catch { exception ->
@@ -47,7 +72,7 @@ class DataStoreManager(private val context: Context) {
                 }
             }
             .map { preferences ->
-                when (preferences[themeKey]) {
+                when (preferences[pointThemeKey]) {
                     PointThemeSetting.PROTOTYPE.value -> PointThemeSetting.PROTOTYPE
                     PointThemeSetting.COMING_SOON.value -> PointThemeSetting.COMING_SOON
                     else -> PointThemeSetting.PROTOTYPE
