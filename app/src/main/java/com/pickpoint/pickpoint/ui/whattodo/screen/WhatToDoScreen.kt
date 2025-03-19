@@ -2,7 +2,9 @@ package com.pickpoint.pickpoint.ui.whattodo.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetScaffold
@@ -26,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.DragHandle
-import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.GameTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.common.util.getPointColorList
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.LocalPointColors
@@ -42,6 +44,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WhatToDoScreen(
+    modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit,
     viewmodel: WhatToDoViewmodel = viewModel()
 ) {
@@ -72,81 +75,90 @@ fun WhatToDoScreen(
         showSheet = !scaffoldState.bottomSheetState.isVisible
     }
 
-    BottomSheetScaffold(
-        scaffoldState = scaffoldState,
-        topBar = {
-            if (confirmed) {
-                RandomPickerTopAppBar(
-                    title = stringResource(id = R.string.what_to_do),
-                    onBackClick = onNavigateBack,
-                    onSettingClick = {
-                         viewmodel.onSettingClick()
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background),
+    ) {
+        BottomSheetScaffold(
+            modifier = modifier,
+            scaffoldState = scaffoldState,
+            topBar = {
+                if (confirmed) {
+                    GameTopAppBar(
+                        modifier = modifier,
+                        title = stringResource(id = R.string.what_to_do),
+                        onBackClick = onNavigateBack,
+                        onSettingClick = {
+                            viewmodel.onSettingClick()
+                        }
+                    )
+                } else {
+                    SettingsTopAppBar(
+                        modifier = modifier,
+                        title = stringResource(id = R.string.game_settings),
+                        onNavigationClick = onNavigateBack
+                    )
+                }
+            },
+            sheetContent = {
+                WTDBottomSheetContent(
+                    modifier = Modifier
+                        .fillMaxHeight(0.91f),
+                    count = count,
+                    resultList = resultList,
+                    retryClick = {
+                        showSheet = false
+                        viewmodel.setConfirmed(false)
                     }
+                )
+            },
+            sheetPeekHeight = if (isTapped) 53.dp else 0.dp,
+            sheetDragHandle = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.primary),
+                    contentAlignment = Alignment.Center
+                ) {
+                    DragHandle()
+                }
+            }
+
+
+        ) { innerPadding ->
+            if (!confirmed) {
+                WTDSettingContent(
+                    modifier = Modifier.padding(innerPadding),
+                    count = count,
+                    onPlusButtonClick = { viewmodel.onPlusButtonClick() },
+                    onMinusButtonClick = { viewmodel.onMinusButtonClick() },
+                    resultList = resultList,
+                    onResultChanged = { index, result ->
+                        viewmodel.updateResultIndex(
+                            index,
+                            result
+                        )
+                    },
+                    reset = { viewmodel.reset() },
+                    confirm = { viewmodel.onConfirmButtonClick() }
                 )
             } else {
-                SecondaryTopAppBar(
-                    title = "Game Settings",
-                    onNavigationClick = onNavigateBack
-                )
-            }
-        },
-        sheetContent = {
-            WTDBottomSheetContent(
-                modifier = Modifier
-                    .fillMaxHeight(0.91f),
-                count = count,
-                resultList = resultList,
-                retryClick = {
-                    showSheet = false
-                    viewmodel.setConfirmed(false)
-                }
-            )
-        },
-        sheetPeekHeight = if (isTapped) 53.dp else 0.dp,
-        sheetDragHandle = {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primary),
-                contentAlignment = Alignment.Center
-            ) {
-                DragHandle()
-            }
-        }
-
-
-    ) { innerPadding ->
-        if (!confirmed) {
-            WTDSettingContent(
-                modifier = Modifier.padding(innerPadding),
-                count = count,
-                onPlusButtonClick = { viewmodel.onPlusButtonClick() },
-                onMinusButtonClick = { viewmodel.onMinusButtonClick() },
-                resultList = resultList,
-                onResultChanged = { index, result ->
-                    viewmodel.updateResultIndex(
-                        index,
-                        result
-                    )
-                },
-                reset = { viewmodel.reset() },
-                confirm = { viewmodel.onConfirmButtonClick() }
-            )
-        } else {
-            WTDGameComponent(
-                modifier = Modifier.padding(innerPadding),
-                totalPoints = count,
-                resultDialog = { onRetry ->
-                    WTDSeeResult(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        coroutineScope.launch {
-                            showSheet = true
-                            scaffoldState.bottomSheetState.expand()
+                WTDGameComponent(
+                    modifier = Modifier.padding(innerPadding),
+                    totalPoints = count,
+                    resultDialog = { onRetry ->
+                        WTDSeeResult(
+                            modifier = Modifier.padding(innerPadding),
+                        ) {
+                            coroutineScope.launch {
+                                showSheet = true
+                                scaffoldState.bottomSheetState.expand()
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
@@ -155,6 +167,11 @@ fun WhatToDoScreen(
 @Composable
 private fun WhatToDoScreenPreview() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        WhatToDoScreen({})
+        WhatToDoScreen(
+            modifier = Modifier,
+            onNavigateBack = {
+
+            }
+        )
     }
 }

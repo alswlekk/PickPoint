@@ -19,15 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalClipboard
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.toClipEntry
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.RetryButton
 import com.pickpoint.pickpoint.ui.common.util.getResultString
@@ -44,6 +42,7 @@ fun WTDBottomSheetContent(
 ) {
     val clipboard = LocalClipboard.current
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Box(
         modifier = modifier
@@ -60,7 +59,7 @@ fun WTDBottomSheetContent(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Results",
+                    text = stringResource(id = R.string.results),
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.onPrimary,
                 )
@@ -71,7 +70,10 @@ fun WTDBottomSheetContent(
                         .size(48.dp, 48.dp)
                         .clickable {
                             val resultString = resultList.getResultString()
-                            val clipData = ClipData.newPlainText("Results", resultString)
+                            val clipData = ClipData.newPlainText(
+                                context.getString(R.string.results),
+                                resultString
+                            )
                             coroutineScope.launch {
                                 clipboard.setClipEntry(clipData.toClipEntry())
                             }
@@ -80,7 +82,7 @@ fun WTDBottomSheetContent(
                 ){
                     Icon(
                         painter = painterResource(id = R.drawable.ic_content_copy),
-                        contentDescription = "Copy",
+                        contentDescription = "copy",
                         tint = MaterialTheme.colorScheme.onPrimary,
                     )
                 }

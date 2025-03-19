@@ -1,5 +1,6 @@
 package com.pickpoint.pickpoint.ui.common.component
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +16,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,15 +37,12 @@ import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
-/**
- * @param*/
 @Composable
-fun SettingComponent(
+fun SettingSwitch(
     modifier: Modifier = Modifier,
     title: String = "",
-    settingRes: List<Int>,
-    checkedIndex: Int = 0,
-    onClick: (Int) -> Unit = {}
+    mode: AppTheme = AppTheme.LIGHT_PROTOTYPE,
+    onClick: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -70,43 +70,41 @@ fun SettingComponent(
                     .shadow(elevation = 4.dp)
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .background(color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(size = 8.dp))
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = RoundedCornerShape(size = 8.dp)
+                    )
             ) {
-                settingRes.forEachIndexed { index, res ->
-                    Row(
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(size = 8.dp))
+                        .clickable { onClick() }
+                        .padding(10.dp)
+                        .height(24.dp)
+                    ,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.dark_mode),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(size = 8.dp))
-                            .clickable(
-                                enabled = res != R.string.coming_soon,
-                            ) { onClick(index) }
-                            .padding(10.dp)
-                            .height(24.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = stringResource(id = res),
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically),
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onPrimary
+                            .padding(start = 10.dp)
+                    )
+                    Switch(
+                        checked = mode == AppTheme.DARK_PROTOTYPE,
+                        onCheckedChange = { onClick() },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = MaterialTheme.colorScheme.background,
+                            checkedTrackColor = MaterialTheme.colorScheme.onPrimary,
+                            checkedBorderColor = MaterialTheme.colorScheme.onPrimary,
+                            uncheckedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                            uncheckedTrackColor = MaterialTheme.colorScheme.primary,
+                            uncheckedBorderColor = MaterialTheme.colorScheme.onPrimary
                         )
-                        if (index == checkedIndex) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_setting_check_24),
-                                contentDescription = "checked",
-                                tint = MaterialTheme.colorScheme.onPrimary
-                            )
-                        }
-                    }
-                    if (index != settingRes.size - 1) {
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .padding(horizontal = 10.dp)
-                                .background(MaterialTheme.colorScheme.tertiary)
-                                .fillMaxWidth()
-                        )
-                    }
+                    )
                 }
             }
         }
@@ -115,15 +113,12 @@ fun SettingComponent(
 
 @Preview(showBackground = true)
 @Composable
-private fun SettingComponentPreview() {
+private fun SettingSwitchPreview() {
     var checkedIndex by remember { mutableIntStateOf(0) }
 
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        SettingComponent(
+        SettingSwitch(
             title = "Language",
-            settingRes = PointThemeSetting.entries.map { it.res },
-            checkedIndex = checkedIndex,
-            onClick = { checkedIndex = it }
         )
     }
 }
@@ -134,12 +129,10 @@ private fun SettingComponentPreview() {
     heightDp = 800
 )
 @Composable
-private fun SettingComponentPreviewFull() {
+private fun SettingSwitchPreviewFull() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        SettingComponent(
+        SettingSwitch(
             title = "Language",
-            settingRes = PointThemeSetting.entries.map { it.res },
-            checkedIndex = 0
         )
     }
 }
@@ -150,12 +143,10 @@ private fun SettingComponentPreviewFull() {
     heightDp = 800
 )
 @Composable
-private fun SettingComponentPreviewWide() {
+private fun SettingSwitchPreviewWide() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        SettingComponent(
+        SettingSwitch(
             title = "Language",
-            settingRes = PointThemeSetting.entries.map { it.res },
-            checkedIndex = 0
         )
     }
 }

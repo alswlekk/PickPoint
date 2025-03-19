@@ -3,8 +3,10 @@ package com.pickpoint.pickpoint.ui.common.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -17,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,10 +37,10 @@ fun ResetConfirmButton(
     apply: () -> Unit
 ) {
     Row(
-        modifier = modifier.padding(10.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
     ) {
-
         Button(
             onClick = { reset() },
             colors = ButtonDefaults.buttonColors(
@@ -46,7 +49,7 @@ fun ResetConfirmButton(
             ),
             shape = RoundedCornerShape(100.dp),
             modifier = Modifier
-                .width(146.dp)
+                .weight(1f)
                 .height(48.dp)
                 .shadow(4.dp, RoundedCornerShape(100.dp))
         ) {
@@ -57,12 +60,12 @@ fun ResetConfirmButton(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Reset",
+                text = stringResource(R.string.reset),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }
-
+        Spacer(Modifier.size(8.dp))
         Button(
             onClick = { apply() },
             colors = ButtonDefaults.buttonColors(
@@ -71,7 +74,7 @@ fun ResetConfirmButton(
             ),
             shape = RoundedCornerShape(100.dp),
             modifier = Modifier
-                .width(146.dp)
+                .weight(1f)
                 .height(48.dp)
                 .shadow(4.dp, RoundedCornerShape(100.dp))
         ) {
@@ -82,7 +85,7 @@ fun ResetConfirmButton(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Apply",
+                text = stringResource(R.string.apply),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.background
             )

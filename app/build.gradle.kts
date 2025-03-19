@@ -12,8 +12,8 @@ android {
         applicationId = "com.pickpoint.pickpoint"
         minSdk = 29
         targetSdk = 35
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 4
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -49,8 +48,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.ui.text.google.fonts)
-    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,9 +56,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    // font
+    implementation(libs.androidx.ui.text.google.fonts)
+    // splash
+    implementation(libs.androidx.core.splashscreen)
+    // datastore
     implementation(libs.androidx.datastore.preferences)
+    // navigation
     implementation(libs.androidx.navigation.compose)
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pick Point</string>
+
+    <!--  Theme Setting  -->
+    <string name="prototype">프로토타입</string>
+    <string name="coming_soon">곧 출시 예정…</string>
+    
+    <!--  Language Setting  -->
+    <string name="korean">한국어 (대한민국)</string>
+    <string name="english">English</string>
+    <string name="japanese">日本語</string>
+
+    <!--  Preferences Setting  -->
+    <string name="dark_mode">다크 모드</string>
+    <string name="settings">설정</string>
+    <string name="app_theme">앱 테마</string>
+    <string name="point_theme">포인트 테마</string>
+    <string name="language">언어</string>
+
+    <!-- 다른 문자열들... -->
+    <string name="reset">초기화</string>
+    <string name="apply">적용하기</string>
+
+    <!-- HomeTopMenu -->
+    <string name="report">신고</string>
+
+    <!-- HomeScreen -->
+    <string name="pick_point">Pick Point</string>
+    <string name="menu">메뉴</string>
+    <string name="random_picker">랜덤 뽑기</string>
+    <string name="team_maker">팀 만들기</string>
+    <string name="what_to_do">할 일 나누기</string>
+
+    <!-- Team Maker / RandomPicker / WhatToDo -->
+    <!-- Setting Content -->
+    <string name="points_to_pick">선택할 포인트 수</string>
+    <string name="total_teams">총 팀 수</string>
+    <string name="total_tasks">전체 할 일 개수</string>
+    <!-- Game Component -->
+    <string name="retry">다시 시도</string>
+    <string name="results">결과</string>
+    <string name="see_result">결과 보기</string>
+    <!-- Try Again -->
+    <string name="try_again">다시 시도할까요?</string>
+    <!-- Screen -->
+    <string name="game_settings">게임 설정</string>
+    <string name="tap_to_start">탭하여 시작!</string>
+</resources>
+

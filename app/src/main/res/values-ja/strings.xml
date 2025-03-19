@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pick Point</string>
+
+    <!--  Theme Setting  -->
+    <string name="prototype">プロトタイプ</string>
+    <string name="coming_soon">近日公開…</string>
+
+    <!--  Language Setting  -->
+    <string name="korean">한국어 (대한민국)</string>
+    <string name="english">English</string>
+    <string name="japanese">日本語</string>
+
+    <!--  Preferences Setting  -->
+    <string name="dark_mode">ダークモード</string>
+    <string name="settings">設定</string>
+    <string name="app_theme">アプリのテーマ</string>
+    <string name="point_theme">ポイントのテーマ</string>
+    <string name="language">言語</string>
+
+    <!-- 다른 문자열들... -->
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
+
+    <!-- HomeTopMenu -->
+    <string name="report">報告</string>
+
+    <!-- HomeScreen -->
+    <string name="pick_point">Pick Point</string>
+    <string name="menu">メニュー</string>
+    <string name="random_picker">ランダムピッカー</string>
+    <string name="team_maker">チームメーカー</string>
+    <string name="what_to_do">何をする？</string>
+
+    <!-- Team Maker / RandomPicker / WhatToDo -->
+    <!-- Setting Content -->
+    <string name="points_to_pick">選択するポイント</string>
+    <string name="total_teams">チームの合計数</string>
+    <string name="total_tasks">Total Tasks</string>
+    <!-- Game Component -->
+    <string name="retry">再試行</string>
+    <string name="results">Results</string>
+    <string name="see_result">See Result</string>
+    <!-- Try Again -->
+    <string name="try_again">もう一度試しますか？</string>
+    <!-- Screen -->
+    <string name="game_settings">ゲーム設定</string>
+    <string name="tap_to_start">タップして開始！</string>
+
+</resources>

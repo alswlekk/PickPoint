@@ -58,6 +58,8 @@ fun TeamMakerSettingContent(
             horizontalArrangement = Arrangement.Center
         ) {
             ResetConfirmButton(
+                modifier = modifier
+                    .padding(horizontal = 20.dp),
                 reset = { reset() },
                 apply = { apply() }
             )

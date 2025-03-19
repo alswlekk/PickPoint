@@ -1,14 +1,13 @@
 package com.pickpoint.pickpoint.ui.common.util
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.PreferencesSetting
-import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
+import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
+import com.pickpoint.pickpoint.ui.theme.AppTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -18,33 +17,51 @@ private val Context.dataStore by preferencesDataStore(name = "dataStore")
 
 class DataStoreManager(private val context: Context) {
 
-    private val themeKey = stringPreferencesKey("theme")
+    private val appThemeKey = stringPreferencesKey("app_theme")
+    private val pointThemeKey = stringPreferencesKey("point_theme")
     private val languageKey = stringPreferencesKey("language")
-    private val preferencesKey = stringPreferencesKey("preferences")
 
     suspend fun saveAllSettings(
-        themeSetting: ThemeSetting,
+        appThemeSetting: AppTheme,
+        pointThemeSetting: PointThemeSetting,
         languageSetting: LanguageSetting,
-        preferencesSetting: PreferencesSetting
     ) {
         context.dataStore.edit { preferences ->
-            preferences[themeKey] = when (themeSetting) {
-                ThemeSetting.PROTOTYPE -> ThemeSetting.PROTOTYPE.value
-                ThemeSetting.COMING_SOON -> ThemeSetting.COMING_SOON.value
+            preferences[appThemeKey] = when (appThemeSetting) {
+                AppTheme.LIGHT_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE.name
+                AppTheme.DARK_PROTOTYPE -> AppTheme.DARK_PROTOTYPE.name
+            }
+            preferences[pointThemeKey] = when (pointThemeSetting) {
+                PointThemeSetting.PROTOTYPE -> PointThemeSetting.PROTOTYPE.value
+                PointThemeSetting.COMING_SOON -> PointThemeSetting.COMING_SOON.value
             }
             preferences[languageKey] = when (languageSetting) {
                 LanguageSetting.KOREAN -> LanguageSetting.KOREAN.value
                 LanguageSetting.ENGLISH -> LanguageSetting.ENGLISH.value
                 LanguageSetting.JAPANESE -> LanguageSetting.JAPANESE.value
             }
-            preferences[preferencesKey] = when (preferencesSetting) {
-                PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS -> PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS.value
-                PreferencesSetting.SOME_SETTINGS -> PreferencesSetting.SOME_SETTINGS.value
-            }
         }
     }
 
-    fun getThemeSetting(): Flow<ThemeSetting> {
+    fun getAppThemeSetting(): Flow<AppTheme> {
+        return context.dataStore.data
+            .catch { exception ->
+                if (exception is IOException) {
+                    emit(emptyPreferences())
+                } else {
+                    throw exception
+                }
+            }
+            .map { preferences ->
+                when (preferences[appThemeKey]) {
+                    AppTheme.LIGHT_PROTOTYPE.name -> AppTheme.LIGHT_PROTOTYPE
+                    AppTheme.DARK_PROTOTYPE.name -> AppTheme.DARK_PROTOTYPE
+                    else -> AppTheme.LIGHT_PROTOTYPE
+                }
+            }
+    }
+
+    fun getPointThemeSetting(): Flow<PointThemeSetting> {
 
         return context.dataStore.data
             .catch { exception ->
@@ -55,10 +72,10 @@ class DataStoreManager(private val context: Context) {
                 }
             }
             .map { preferences ->
-                when (preferences[themeKey]) {
-                    ThemeSetting.PROTOTYPE.value -> ThemeSetting.PROTOTYPE
-                    ThemeSetting.COMING_SOON.value -> ThemeSetting.COMING_SOON
-                    else -> ThemeSetting.PROTOTYPE
+                when (preferences[pointThemeKey]) {
+                    PointThemeSetting.PROTOTYPE.value -> PointThemeSetting.PROTOTYPE
+                    PointThemeSetting.COMING_SOON.value -> PointThemeSetting.COMING_SOON
+                    else -> PointThemeSetting.PROTOTYPE
                 }
             }
     }
@@ -81,23 +98,4 @@ class DataStoreManager(private val context: Context) {
                 }
             }
     }
-
-    fun getPreferencesSetting(): Flow<PreferencesSetting> {
-        return context.dataStore.data
-            .catch { exception ->
-                if (exception is IOException) {
-                    emit(emptyPreferences())
-                } else {
-                    throw exception
-                }
-            }
-            .map { preferences ->
-                when (preferences[preferencesKey]) {
-                    PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS.value -> PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS
-                    PreferencesSetting.SOME_SETTINGS.value -> PreferencesSetting.SOME_SETTINGS
-                    else -> PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS
-                }
-            }
-    }
-
 }
