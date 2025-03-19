@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pickpoint.pickpoint.ui.home.component.HomeButton
-import com.pickpoint.pickpoint.ui.home.viewmodel.HomeViewModel
+import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 import androidx.compose.runtime.*
 import androidx.compose.animation.AnimatedVisibility
@@ -43,7 +43,6 @@ import com.pickpoint.pickpoint.ui.theme.LightPrototypeBackgroundColor
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel? = null,
     onNavigateToSettings: () -> Unit = {},
     onNavigateToReport: () -> Unit = {},
     onNavigateToRandomPicker: () -> Unit = {},

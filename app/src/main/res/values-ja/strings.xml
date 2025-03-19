@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pick Point</string>
+
+    <!--  Theme Setting  -->
+    <string name="prototype">プロトタイプ</string>
+    <string name="coming_soon">近日公開…</string>
+
+    <!--  Language Setting  -->
+    <string name="korean">한국어 (대한민국)</string>
+    <string name="english">English</string>
+    <string name="japanese">日本語</string>
+
+    <!--  Preferences Setting  -->
+    <string name="remember_previous_settings">前回の設定を記憶する</string>
+    <string name="some_settings">いくつかの設定</string>
+
+    <string name="dark_mode">ダークモード</string>
+    <string name="settings">設定</string>
+    <string name="app_theme">アプリのテーマ</string>
+    <string name="point_theme">ポイントのテーマ</string>
+    <string name="language">言語</string>
+    <string name="preferences">環境設定</string>
+
+    <!-- HomeTopMenu -->
+    <string name="report">報告</string>
+
+    <!-- HomeScreen -->
+    <string name="pick_point">ポイントを選択</string>
+    <string name="menu">メニュー</string>
+    <string name="random_picker">ランダムピッカー</string>
+    <string name="team_maker">チームメーカー</string>
+    <string name="what_to_do">何をする？</string>
+
+    <!-- Team Maker / RandomPicker -->
+    <!-- Setting Content -->
+    <string name="points_to_pick">選択するポイント</string>
+    <!-- Game Component -->
+    <string name="retry">再試行</string>
+    <!-- Try Again -->
+    <string name="try_again">もう一度試しますか？</string>
+    <!-- Screen -->
+    <string name="game_settings">ゲーム設定</string>
+    <string name="total_teams">チームの合計数</string>
+    <string name="tap_to_start">タップして開始！</string>
+
+</resources>
