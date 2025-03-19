@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pickpoint.pickpoint.R
-import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.GameTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerGameComponent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerSettingContent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerTryAgain
@@ -22,6 +22,7 @@ import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
 @Composable
 fun TeamMakerScreen(
+    modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit,
 ) {
 
@@ -30,26 +31,10 @@ fun TeamMakerScreen(
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             if (confirmed) {
-//                MainTopAppBar(
-//                    title = stringResource(id = R.string.team_maker),
-//                    leftIcon = {
-//                        Icon(
-//                            painter = painterResource(id = R.drawable.ic_main_top_back),
-//                            contentDescription = null,
-//                            tint = MaterialTheme.colorScheme.onPrimary
-//                        )
-//                    },
-//                    rightIcon = {
-//                        Icon(
-//                            imageVector = Icons.Filled.Menu,
-//                            contentDescription = null,
-//                            tint = MaterialTheme.colorScheme.onPrimary
-//                        )
-//                    }
-//                )
-                RandomPickerTopAppBar(
+                GameTopAppBar(
                     title = stringResource(id = R.string.team_maker),
                     onBackClick = onNavigateBack,
                     onSettingClick = {
@@ -57,7 +42,7 @@ fun TeamMakerScreen(
                     }
                 )
             } else {
-                SecondaryTopAppBar(
+                SettingsTopAppBar(
                     title = stringResource(id = R.string.game_settings),
                     onNavigationClick = onNavigateBack
                 )

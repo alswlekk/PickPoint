@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pickpoint.pickpoint.R
-import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.GameTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.randompicker.component.RandomPickerGameComponent
 import com.pickpoint.pickpoint.ui.randompicker.component.RandomPickerSettingContent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerTryAgain
@@ -24,6 +24,7 @@ import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
 @Composable
 fun RandomPickerScreen(
+    modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit
 ) {
     var totalCount by remember { mutableIntStateOf(4) }
@@ -31,10 +32,10 @@ fun RandomPickerScreen(
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
-        modifier = Modifier.background(MaterialTheme.colorScheme.background),
+        modifier = modifier.background(MaterialTheme.colorScheme.background),
         topBar = {
             if (confirmed) {
-                RandomPickerTopAppBar(
+                GameTopAppBar(
                     title = stringResource(id = R.string.random_picker),
                     onBackClick = onNavigateBack,
                     onSettingClick = {
@@ -42,7 +43,7 @@ fun RandomPickerScreen(
                     }
                 )
             } else {
-                SecondaryTopAppBar(
+                SettingsTopAppBar(
                     title = stringResource(id = R.string.game_settings),
                     onNavigationClick = onNavigateBack
                 )

@@ -12,8 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.NumberSettingComponent
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
 import com.pickpoint.pickpoint.ui.common.component.ResultsComponent
@@ -41,7 +43,7 @@ fun WTDSettingContent(
                 modifier = Modifier
                     .padding(top = 30.dp)
                     .padding(horizontal = 20.dp),
-                label = "Total Points",
+                label = stringResource(R.string.total_tasks),
                 currentNumber = count,
                 onPlusButtonClick = {
                     if (count < 10) onPlusButtonClick()
@@ -54,7 +56,7 @@ fun WTDSettingContent(
             ResultsComponent(
                 modifier = Modifier
                     .padding(top = 46.dp),
-                title = "Results",
+                title = stringResource(R.string.results),
                 count = count,
                 resultList = resultList,
                 onResultChanged = { index, result ->
