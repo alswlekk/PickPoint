@@ -24,6 +24,7 @@ import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
 @Composable
 fun RandomPickerScreen(
+    modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit
 ) {
     var totalCount by remember { mutableIntStateOf(4) }
@@ -31,7 +32,7 @@ fun RandomPickerScreen(
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
-        modifier = Modifier.background(MaterialTheme.colorScheme.background),
+        modifier = modifier.background(MaterialTheme.colorScheme.background),
         topBar = {
             if (confirmed) {
                 RandomPickerTopAppBar(

@@ -32,6 +32,7 @@ import com.pickpoint.pickpoint.ui.theme.AppTheme
 
 @Composable
 fun SettingRoute(
+    modifier: Modifier = Modifier,
     viewModel: SettingViewModel,
     onNavigateBack: () -> Unit = {},
     changeTheme: (AppTheme) -> Unit = {}
@@ -41,6 +42,7 @@ fun SettingRoute(
     val languageIndex = viewModel.languageSettingIndex.collectAsStateWithLifecycle()
 
     SettingsScreen(
+        modifier = modifier,
         appTheme = appTheme.value,
         pointThemeIndex = pointThemeIndex.value,
         languageIndex = languageIndex.value,

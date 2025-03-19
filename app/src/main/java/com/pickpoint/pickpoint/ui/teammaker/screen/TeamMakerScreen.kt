@@ -22,6 +22,7 @@ import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
 @Composable
 fun TeamMakerScreen(
+    modifier: Modifier = Modifier,
     onNavigateBack: () -> Unit,
 ) {
 
@@ -30,25 +31,9 @@ fun TeamMakerScreen(
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             if (confirmed) {
-//                MainTopAppBar(
-//                    title = stringResource(id = R.string.team_maker),
-//                    leftIcon = {
-//                        Icon(
-//                            painter = painterResource(id = R.drawable.ic_main_top_back),
-//                            contentDescription = null,
-//                            tint = MaterialTheme.colorScheme.onPrimary
-//                        )
-//                    },
-//                    rightIcon = {
-//                        Icon(
-//                            imageVector = Icons.Filled.Menu,
-//                            contentDescription = null,
-//                            tint = MaterialTheme.colorScheme.onPrimary
-//                        )
-//                    }
-//                )
                 RandomPickerTopAppBar(
                     title = stringResource(id = R.string.team_maker),
                     onBackClick = onNavigateBack,

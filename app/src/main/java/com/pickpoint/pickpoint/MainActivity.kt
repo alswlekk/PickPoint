@@ -7,22 +7,21 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.collectAsState
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.pickpoint.pickpoint.navigation.PickPointNavGraph
 import com.pickpoint.pickpoint.ui.common.util.DataStoreManager
-import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -61,6 +60,8 @@ class MainActivity : AppCompatActivity() {
                 val navController = rememberNavController()
                 // homeViewModel을 전달
                 PickPointNavGraph(
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.systemBars),
                     navController = navController,
                     dataStoreManager = dataStoreManager,
                     changeTheme = { newTheme ->
