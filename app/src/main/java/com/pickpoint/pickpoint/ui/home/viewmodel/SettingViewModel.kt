@@ -1,9 +1,7 @@
 package com.pickpoint.pickpoint.ui.home.viewmodel
 
-import android.app.Application
-import android.app.LocaleManager
 import android.os.Build
-import androidx.annotation.RequiresApi
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
@@ -16,13 +14,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class SettingViewModel(
-    private val application: Application,
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
-    private val _appThemeSetting = MutableStateFlow(AppTheme.LIGHT_PROTOTYPE)
+    private val _appThemeSetting = MutableStateFlow<AppTheme>(AppTheme.LIGHT_PROTOTYPE)
     val appThemeSetting: StateFlow<AppTheme> = _appThemeSetting
 
     private val _pointThemeSettingIndex = MutableStateFlow<Int>(0)
@@ -31,8 +29,6 @@ class SettingViewModel(
     private val _languageSettingIndex = MutableStateFlow<Int>(0)
     val languageSettingIndex: StateFlow<Int> = _languageSettingIndex
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private val localeManager = application.getSystemService(LocaleManager::class.java)
 
     init {
         loadSettings()
@@ -61,24 +57,26 @@ class SettingViewModel(
                 )
             }
 
-            dataStoreManager.saveAllSettings(
-                when (_appThemeSetting.value) {
-                    AppTheme.LIGHT_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE
-                    AppTheme.DARK_PROTOTYPE -> AppTheme.DARK_PROTOTYPE
-                },
+            runBlocking {
+                dataStoreManager.saveAllSettings(
+                    when (_appThemeSetting.value) {
+                        AppTheme.LIGHT_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE
+                        AppTheme.DARK_PROTOTYPE -> AppTheme.DARK_PROTOTYPE
+                    },
 
-                when (_pointThemeSettingIndex.value) {
-                    PointThemeSetting.PROTOTYPE.index -> PointThemeSetting.PROTOTYPE
-                    PointThemeSetting.COMING_SOON.index -> PointThemeSetting.COMING_SOON
-                    else -> PointThemeSetting.PROTOTYPE
-                },
-                when (_languageSettingIndex.value) {
-                    LanguageSetting.KOREAN.index -> LanguageSetting.KOREAN
-                    LanguageSetting.ENGLISH.index -> LanguageSetting.ENGLISH
-                    LanguageSetting.JAPANESE.index -> LanguageSetting.JAPANESE
-                    else -> LanguageSetting.KOREAN
-                },
-            )
+                    when (_pointThemeSettingIndex.value) {
+                        PointThemeSetting.PROTOTYPE.index -> PointThemeSetting.PROTOTYPE
+                        PointThemeSetting.COMING_SOON.index -> PointThemeSetting.COMING_SOON
+                        else -> PointThemeSetting.PROTOTYPE
+                    },
+                    when (_languageSettingIndex.value) {
+                        LanguageSetting.KOREAN.index -> LanguageSetting.KOREAN
+                        LanguageSetting.ENGLISH.index -> LanguageSetting.ENGLISH
+                        LanguageSetting.JAPANESE.index -> LanguageSetting.JAPANESE
+                        else -> LanguageSetting.KOREAN
+                    },
+                )
+            }
         }
     }
 
@@ -131,10 +129,11 @@ class SettingViewModel(
         }
     }
 
-    fun reverseAppThemeSetting(isDarkMode: Boolean) {
-        _appThemeSetting.value =
-            if (isDarkMode) AppTheme.DARK_PROTOTYPE
-            else AppTheme.LIGHT_PROTOTYPE
+    fun reverseAppThemeSetting() {
+        _appThemeSetting.value = when (_appThemeSetting.value) {
+            AppTheme.LIGHT_PROTOTYPE -> AppTheme.DARK_PROTOTYPE
+            AppTheme.DARK_PROTOTYPE -> AppTheme.LIGHT_PROTOTYPE
+        }
 
     }
 

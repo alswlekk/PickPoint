@@ -1,5 +1,6 @@
 package com.pickpoint.pickpoint.ui.common.component
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -41,7 +42,7 @@ fun SettingSwitch(
     modifier: Modifier = Modifier,
     title: String = "",
     mode: AppTheme = AppTheme.LIGHT_PROTOTYPE,
-    onClick: (Boolean) -> Unit = {}
+    onClick: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -78,9 +79,10 @@ fun SettingSwitch(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(size = 8.dp))
-                        .clickable { }
+                        .clickable { onClick() }
                         .padding(10.dp)
-                        .height(24.dp),
+                        .height(24.dp)
+                    ,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -93,7 +95,7 @@ fun SettingSwitch(
                     )
                     Switch(
                         checked = mode == AppTheme.DARK_PROTOTYPE,
-                        onCheckedChange = { onClick(it) },
+                        onCheckedChange = { onClick() },
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = SwitchDefaults.colors().checkedTrackColor,
                             checkedTrackColor = SwitchDefaults.colors().checkedThumbColor,
