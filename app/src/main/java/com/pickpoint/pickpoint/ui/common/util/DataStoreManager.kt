@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
+import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -20,13 +20,13 @@ class DataStoreManager(private val context: Context) {
     private val languageKey = stringPreferencesKey("language")
 
     suspend fun saveAllSettings(
-        themeSetting: ThemeSetting,
+        pointThemeSetting: PointThemeSetting,
         languageSetting: LanguageSetting,
     ) {
         context.dataStore.edit { preferences ->
-            preferences[themeKey] = when (themeSetting) {
-                ThemeSetting.PROTOTYPE -> ThemeSetting.PROTOTYPE.value
-                ThemeSetting.COMING_SOON -> ThemeSetting.COMING_SOON.value
+            preferences[themeKey] = when (pointThemeSetting) {
+                PointThemeSetting.PROTOTYPE -> PointThemeSetting.PROTOTYPE.value
+                PointThemeSetting.COMING_SOON -> PointThemeSetting.COMING_SOON.value
             }
             preferences[languageKey] = when (languageSetting) {
                 LanguageSetting.KOREAN -> LanguageSetting.KOREAN.value
@@ -36,7 +36,7 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    fun getThemeSetting(): Flow<ThemeSetting> {
+    fun getThemeSetting(): Flow<PointThemeSetting> {
 
         return context.dataStore.data
             .catch { exception ->
@@ -48,9 +48,9 @@ class DataStoreManager(private val context: Context) {
             }
             .map { preferences ->
                 when (preferences[themeKey]) {
-                    ThemeSetting.PROTOTYPE.value -> ThemeSetting.PROTOTYPE
-                    ThemeSetting.COMING_SOON.value -> ThemeSetting.COMING_SOON
-                    else -> ThemeSetting.PROTOTYPE
+                    PointThemeSetting.PROTOTYPE.value -> PointThemeSetting.PROTOTYPE
+                    PointThemeSetting.COMING_SOON.value -> PointThemeSetting.COMING_SOON
+                    else -> PointThemeSetting.PROTOTYPE
                 }
             }
     }

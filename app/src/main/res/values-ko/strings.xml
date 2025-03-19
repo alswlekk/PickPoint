@@ -16,7 +16,8 @@
     <string name="some_settings">일부 설정</string>
 
     <string name="settings">설정</string>
-    <string name="theme">테마</string>
+    <string name="app_theme">앱 테마</string>
+    <string name="point_theme">포인트 테마</string>
     <string name="language">언어</string>
     <string name="preferences">기본 설정</string>
     <!-- 다른 문자열들... -->

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pickpoint.pickpoint.ui.common.util.DataStoreManager
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
+import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -59,9 +59,9 @@ class SettingViewModel(
 
             dataStoreManager.saveAllSettings(
                 when (_themeSettingIndex.value) {
-                    ThemeSetting.PROTOTYPE.index -> ThemeSetting.PROTOTYPE
-                    ThemeSetting.COMING_SOON.index -> ThemeSetting.COMING_SOON
-                    else -> ThemeSetting.PROTOTYPE
+                    PointThemeSetting.PROTOTYPE.index -> PointThemeSetting.PROTOTYPE
+                    PointThemeSetting.COMING_SOON.index -> PointThemeSetting.COMING_SOON
+                    else -> PointThemeSetting.PROTOTYPE
                 },
                 when (_languageSettingIndex.value) {
                     LanguageSetting.KOREAN.index -> LanguageSetting.KOREAN
@@ -83,12 +83,12 @@ class SettingViewModel(
                 Pair(theme, language)
             }.collect { (theme, language) ->
                 when (theme) {
-                    ThemeSetting.PROTOTYPE -> {
-                        _themeSettingIndex.value = ThemeSetting.PROTOTYPE.index
+                    PointThemeSetting.PROTOTYPE -> {
+                        _themeSettingIndex.value = PointThemeSetting.PROTOTYPE.index
                     }
 
-                    ThemeSetting.COMING_SOON -> {
-                        _themeSettingIndex.value = ThemeSetting.COMING_SOON.index
+                    PointThemeSetting.COMING_SOON -> {
+                        _themeSettingIndex.value = PointThemeSetting.COMING_SOON.index
                     }
 
                 }

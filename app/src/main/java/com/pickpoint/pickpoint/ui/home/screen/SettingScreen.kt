@@ -1,7 +1,6 @@
 package com.pickpoint.pickpoint.ui.home.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +25,7 @@ import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
 import com.pickpoint.pickpoint.ui.common.component.SettingComponent
 import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
+import com.pickpoint.pickpoint.ui.model.setting.PointThemeSetting
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
@@ -61,10 +59,12 @@ fun SettingsScreen(
             )
             Spacer(modifier = Modifier.padding(15.dp))
 
-            // 테마 설정
+
+
+            // Point 설정
             SettingComponent(
                 title = stringResource(id = R.string.theme),
-                settingRes = ThemeSetting.entries.map { it.res },
+                settingRes = PointThemeSetting.entries.map { it.res },
                 checkedIndex = themeIndex.value,
                 onClick = { viewModel.updateThemeSettingIndex(it) }
             )

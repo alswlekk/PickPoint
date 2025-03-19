@@ -15,7 +15,8 @@
     <string name="remember_previous_settings">Remember Previous Settings</string>
     <string name="some_settings">Some Settings</string>
 
-    <string name="theme">Theme</string>
+    <string name="app_theme">App Theme</string>
+    <string name="point_theme">Point Theme</string>
     <string name="language">Language</string>
     <string name="preferences">Preferences</string>
     <!-- 다른 문자열들... -->
