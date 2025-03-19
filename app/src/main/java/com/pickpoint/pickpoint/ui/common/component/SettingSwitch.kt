@@ -97,9 +97,12 @@ fun SettingSwitch(
                         checked = mode == AppTheme.DARK_PROTOTYPE,
                         onCheckedChange = { onClick() },
                         colors = SwitchDefaults.colors(
-                            checkedThumbColor = SwitchDefaults.colors().checkedTrackColor,
-                            checkedTrackColor = SwitchDefaults.colors().checkedThumbColor,
-                            checkedBorderColor = SwitchDefaults.colors().checkedThumbColor,
+                            checkedThumbColor = MaterialTheme.colorScheme.background,
+                            checkedTrackColor = MaterialTheme.colorScheme.onPrimary,
+                            checkedBorderColor = MaterialTheme.colorScheme.onPrimary,
+                            uncheckedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                            uncheckedTrackColor = MaterialTheme.colorScheme.primary,
+                            uncheckedBorderColor = MaterialTheme.colorScheme.onPrimary
                         )
                     )
                 }
