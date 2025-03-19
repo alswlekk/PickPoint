@@ -3,17 +3,13 @@ package com.pickpoint.pickpoint.ui.home.viewmodel
 import android.app.Application
 import android.app.LocaleManager
 import android.os.Build
-import android.os.LocaleList
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.getSystemService
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.util.DataStoreManager
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.PreferencesSetting
 import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,9 +26,6 @@ class SettingViewModel(
 
     private val _languageSettingIndex = MutableStateFlow<Int>(0)
     val languageSettingIndex: StateFlow<Int> = _languageSettingIndex
-
-    private val _preferencesSettingIndex = MutableStateFlow<Int>(0)
-    val preferencesSettingIndex: StateFlow<Int> = _preferencesSettingIndex
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private val localeManager = application.getSystemService(LocaleManager::class.java)
@@ -76,11 +69,6 @@ class SettingViewModel(
                     LanguageSetting.JAPANESE.index -> LanguageSetting.JAPANESE
                     else -> LanguageSetting.KOREAN
                 },
-                when (_preferencesSettingIndex.value) {
-                    PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS.index -> PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS
-                    PreferencesSetting.SOME_SETTINGS.index -> PreferencesSetting.SOME_SETTINGS
-                    else -> PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS
-                }
             )
         }
     }
@@ -91,10 +79,9 @@ class SettingViewModel(
             combine(
                 dataStoreManager.getThemeSetting(),
                 dataStoreManager.getLanguageSetting(),
-                dataStoreManager.getPreferencesSetting()
-            ) { theme, language, preferences ->
-                Triple(theme, language, preferences)
-            }.collect { (theme, language, preferences) ->
+            ) { theme, language ->
+                Pair(theme, language)
+            }.collect { (theme, language) ->
                 when (theme) {
                     ThemeSetting.PROTOTYPE -> {
                         _themeSettingIndex.value = ThemeSetting.PROTOTYPE.index
@@ -120,16 +107,6 @@ class SettingViewModel(
                     }
                 }
 
-                when (preferences) {
-                    PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS -> {
-                        _preferencesSettingIndex.value =
-                            PreferencesSetting.REMEMBER_PREVIOUS_SETTINGS.index
-                    }
-
-                    PreferencesSetting.SOME_SETTINGS -> {
-                        _preferencesSettingIndex.value = PreferencesSetting.SOME_SETTINGS.index
-                    }
-                }
             }
         }
     }
@@ -141,9 +118,4 @@ class SettingViewModel(
     fun updateLanguageSettingIndex(index: Int) {
         _languageSettingIndex.value = index
     }
-
-    fun updatePreferencesSettingIndex(index: Int) {
-        _preferencesSettingIndex.value = index
-    }
-
 }

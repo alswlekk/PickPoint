@@ -27,7 +27,6 @@ import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
 import com.pickpoint.pickpoint.ui.common.component.SettingComponent
 import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
-import com.pickpoint.pickpoint.ui.model.setting.PreferencesSetting
 import com.pickpoint.pickpoint.ui.model.setting.ThemeSetting
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
 import com.pickpoint.pickpoint.ui.theme.AppTheme
@@ -42,7 +41,6 @@ fun SettingsScreen(
 
     val themeIndex = viewModel!!.themeSettingIndex.collectAsStateWithLifecycle()
     val languageIndex = viewModel.languageSettingIndex.collectAsStateWithLifecycle()
-    val preferencesIndex = viewModel.preferencesSettingIndex.collectAsStateWithLifecycle()
 
     Box(
         modifier = modifier
@@ -79,15 +77,7 @@ fun SettingsScreen(
                 checkedIndex = languageIndex.value,
                 onClick = { viewModel.updateLanguageSettingIndex(it) }
             )
-            Spacer(modifier = Modifier.padding(15.dp))
 
-            // 추가 설정
-            SettingComponent(
-                title = stringResource(id = R.string.preferences),
-                settingRes = PreferencesSetting.entries.map { it.res },
-                checkedIndex = preferencesIndex.value,
-                onClick = { viewModel.updatePreferencesSettingIndex(it) }
-            )
             Spacer(modifier = Modifier.paddingFromBaseline(top = 124.dp))
 
         }
