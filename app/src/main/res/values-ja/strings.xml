@@ -22,21 +22,28 @@
     <string name="language">言語</string>
     <string name="preferences">環境設定</string>
 
+    <!-- 다른 문자열들... -->
+    <string name="reset">Reset</string>
+    <string name="apply">Apply</string>
+
     <!-- HomeTopMenu -->
     <string name="report">報告</string>
 
     <!-- HomeScreen -->
-    <string name="pick_point">ポイントを選択</string>
+    <string name="pick_point">Pick Point</string>
     <string name="menu">メニュー</string>
     <string name="random_picker">ランダムピッカー</string>
     <string name="team_maker">チームメーカー</string>
     <string name="what_to_do">何をする？</string>
 
-    <!-- Team Maker / RandomPicker -->
+    <!-- Team Maker / RandomPicker / WhatToDo -->
     <!-- Setting Content -->
     <string name="points_to_pick">選択するポイント</string>
+    <string name="total_tasks">Total Tasks</string>
     <!-- Game Component -->
     <string name="retry">再試行</string>
+    <string name="results">Results</string>
+    <string name="see_result">See Result</string>
     <!-- Try Again -->
     <string name="try_again">もう一度試しますか？</string>
     <!-- Screen -->

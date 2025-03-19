@@ -76,7 +76,8 @@ fun WhatToDoScreen(
     }
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
     ) {
         BottomSheetScaffold(
@@ -95,7 +96,7 @@ fun WhatToDoScreen(
                 } else {
                     SecondaryTopAppBar(
                         modifier = modifier,
-                        title = "Game Settings",
+                        title = stringResource(id = R.string.game_settings),
                         onNavigationClick = onNavigateBack
                     )
                 }
@@ -128,7 +129,7 @@ fun WhatToDoScreen(
         ) { innerPadding ->
             if (!confirmed) {
                 WTDSettingContent(
-                modifier = Modifier.padding(innerPadding),
+                    modifier = Modifier.padding(innerPadding),
                     count = count,
                     onPlusButtonClick = { viewmodel.onPlusButtonClick() },
                     onMinusButtonClick = { viewmodel.onMinusButtonClick() },
@@ -144,11 +145,11 @@ fun WhatToDoScreen(
                 )
             } else {
                 WTDGameComponent(
-                modifier = Modifier.padding(innerPadding),
+                    modifier = Modifier.padding(innerPadding),
                     totalPoints = count,
                     resultDialog = { onRetry ->
                         WTDSeeResult(
-                        modifier = Modifier.padding(innerPadding),
+                            modifier = Modifier.padding(innerPadding),
                         ) {
                             coroutineScope.launch {
                                 showSheet = true
