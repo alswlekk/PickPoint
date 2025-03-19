@@ -1,10 +1,6 @@
 package com.pickpoint.pickpoint.ui.teammaker.screen
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,11 +9,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pickpoint.pickpoint.R
-import com.pickpoint.pickpoint.ui.common.component.MainTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
 import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerGameComponent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerSettingContent
@@ -31,27 +26,34 @@ fun TeamMakerScreen(
 ) {
 
     var totalCount by remember { mutableIntStateOf(4) }
-    var pointsToPick by remember { mutableIntStateOf(1) }
+    var pointsToPick by remember { mutableIntStateOf(2) }
     var confirmed by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             if (confirmed) {
-                MainTopAppBar(
+//                MainTopAppBar(
+//                    title = stringResource(id = R.string.team_maker),
+//                    leftIcon = {
+//                        Icon(
+//                            painter = painterResource(id = R.drawable.ic_main_top_back),
+//                            contentDescription = null,
+//                            tint = MaterialTheme.colorScheme.onPrimary
+//                        )
+//                    },
+//                    rightIcon = {
+//                        Icon(
+//                            imageVector = Icons.Filled.Menu,
+//                            contentDescription = null,
+//                            tint = MaterialTheme.colorScheme.onPrimary
+//                        )
+//                    }
+//                )
+                RandomPickerTopAppBar(
                     title = stringResource(id = R.string.team_maker),
-                    leftIcon = {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_main_top_back),
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimary
-                        )
-                    },
-                    rightIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Menu,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimary
-                        )
+                    onBackClick = onNavigateBack,
+                    onSettingClick = {
+                        confirmed = false
                     }
                 )
             } else {
@@ -70,11 +72,11 @@ fun TeamMakerScreen(
                     if (pointsToPick < 10) pointsToPick += 1
                 },
                 pointsToPickMinus = {
-                    if (pointsToPick > 1) pointsToPick -= 1
+                    if (pointsToPick > 2) pointsToPick -= 1
                 },
                 reset = {
                     totalCount = 4
-                    pointsToPick = 1
+                    pointsToPick = 2
                 },
                 apply = { confirmed = true }
             )

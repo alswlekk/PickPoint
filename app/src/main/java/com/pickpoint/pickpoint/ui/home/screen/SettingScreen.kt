@@ -1,10 +1,14 @@
 package com.pickpoint.pickpoint.ui.home.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.rememberScrollState
@@ -40,17 +44,18 @@ fun SettingsScreen(
     val languageIndex = viewModel.languageSettingIndex.collectAsStateWithLifecycle()
     val preferencesIndex = viewModel.preferencesSettingIndex.collectAsStateWithLifecycle()
 
-    Surface(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(rememberScrollState())
         ) {
             SecondaryTopAppBar(
                 title = stringResource(id = R.string.settings),
@@ -85,13 +90,21 @@ fun SettingsScreen(
             )
             Spacer(modifier = Modifier.paddingFromBaseline(top = 124.dp))
 
-            // 리셋 및 확인 버튼
+        }
+        // 리셋 및 확인 버튼
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
             ResetConfirmButton(
+                modifier = modifier
+                    .padding(horizontal = 20.dp),
                 reset = { viewModel.resetSettings() },
                 apply = { viewModel.saveSettings() }
             )
-
-            Spacer(modifier = Modifier.padding(15.dp))
         }
     }
 }

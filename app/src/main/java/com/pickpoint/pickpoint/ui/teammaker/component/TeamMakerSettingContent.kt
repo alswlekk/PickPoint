@@ -1,8 +1,10 @@
 package com.pickpoint.pickpoint.ui.teammaker.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.NumberSettingComponent
 import com.pickpoint.pickpoint.ui.common.component.ResetConfirmButton
-import com.pickpoint.pickpoint.ui.common.component.ResultsComponent
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
@@ -42,23 +43,27 @@ fun TeamMakerSettingContent(
                 modifier = Modifier
                     .padding(top = 30.dp)
                     .padding(horizontal = 20.dp),
-                label = stringResource(id = R.string.points_to_pick),
+                label = stringResource(R.string.total_teams),
                 currentNumber = pointsToPick,
                 onPlusButtonClick = { pointsToPickPlus() },
                 onMinusButtonClick = { pointsToPickMinus() }
             )
 
         }
-        ResetConfirmButton(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 14.dp)
-                .padding(horizontal = 35.dp)
-                .align(Alignment.BottomCenter),
-            reset = { reset() },
-            apply = { apply() }
-
-        )
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 20.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            ResetConfirmButton(
+                modifier = modifier
+                    .padding(horizontal = 20.dp),
+                reset = { reset() },
+                apply = { apply() }
+            )
+        }
     }
 }
 

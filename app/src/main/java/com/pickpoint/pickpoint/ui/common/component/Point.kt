@@ -52,20 +52,20 @@ fun PointColorPreview() {
         val colors = LocalPointColors.current.getPointColorList()
 
         PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-            FlowRow(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                colors.forEachIndexed { index, color ->
-                    CircleButton(
-                        color = color,
-                        pointSize = 100,
-                        number = if (index % 2 == 0) index + 1 else null
-                    )
-                }
-            }
+//            FlowRow(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(16.dp),
+//                horizontalArrangement = Arrangement.spacedBy(8.dp)
+//            ) {
+//                colors.forEachIndexed { index, color ->
+//                    CircleButton(
+//                        color = color,
+//                        pointSize = 100,
+//                        number = if (index % 2 == 0) index + 1 else null
+//                    )
+//                }
+//            }
         }
     }
 }

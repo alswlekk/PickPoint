@@ -31,3 +31,18 @@ fun <T> List<T>.getRandomElements(count: Int): List<T> {
     return shuffledList.subList(0, count)
 }
 
+// WTD 결과를 string으로 변경
+fun List<String>.getResultString(): String{
+    if (this.isEmpty()) return ""
+
+    var result = "Results\n\n"
+    for (i in indices) {
+        if (i == this.size - 1){
+            // 마지막에는 \n 추가 안함
+            result += "${i+1}. "+this[i]
+        }else{
+            result += "${i+1}. "+this[i]+"\n"
+        }
+    }
+    return result
+}

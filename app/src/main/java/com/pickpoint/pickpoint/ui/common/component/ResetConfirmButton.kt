@@ -3,8 +3,10 @@ package com.pickpoint.pickpoint.ui.common.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -34,10 +36,10 @@ fun ResetConfirmButton(
     apply: () -> Unit
 ) {
     Row(
-        modifier = modifier.padding(10.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
     ) {
-
         Button(
             onClick = { reset() },
             colors = ButtonDefaults.buttonColors(
@@ -46,7 +48,7 @@ fun ResetConfirmButton(
             ),
             shape = RoundedCornerShape(100.dp),
             modifier = Modifier
-                .width(146.dp)
+                .weight(1f)
                 .height(48.dp)
                 .shadow(4.dp, RoundedCornerShape(100.dp))
         ) {
@@ -62,7 +64,7 @@ fun ResetConfirmButton(
                 color = MaterialTheme.colorScheme.onPrimary
             )
         }
-
+        Spacer(Modifier.size(8.dp))
         Button(
             onClick = { apply() },
             colors = ButtonDefaults.buttonColors(
@@ -71,7 +73,7 @@ fun ResetConfirmButton(
             ),
             shape = RoundedCornerShape(100.dp),
             modifier = Modifier
-                .width(146.dp)
+                .weight(1f)
                 .height(48.dp)
                 .shadow(4.dp, RoundedCornerShape(100.dp))
         ) {
