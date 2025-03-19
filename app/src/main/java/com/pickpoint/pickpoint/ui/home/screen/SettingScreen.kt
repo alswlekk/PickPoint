@@ -1,6 +1,5 @@
 package com.pickpoint.pickpoint.ui.home.screen
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pickpoint.pickpoint.R
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.common.component.SettingComponent
 import com.pickpoint.pickpoint.ui.home.viewmodel.SettingViewModel
 import com.pickpoint.pickpoint.ui.model.setting.LanguageSetting
@@ -83,7 +82,7 @@ fun SettingsScreen(
                 .background(MaterialTheme.colorScheme.background)
                 .verticalScroll(rememberScrollState())
         ) {
-            SecondaryTopAppBar(
+            SettingsTopAppBar(
                 title = stringResource(id = R.string.settings),
                 onNavigationClick = onNavigateBack
             )

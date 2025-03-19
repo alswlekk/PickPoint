@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.DragHandle
-import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.GameTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.common.util.getPointColorList
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.LocalPointColors
@@ -85,7 +85,7 @@ fun WhatToDoScreen(
             scaffoldState = scaffoldState,
             topBar = {
                 if (confirmed) {
-                    RandomPickerTopAppBar(
+                    GameTopAppBar(
                         modifier = modifier,
                         title = stringResource(id = R.string.what_to_do),
                         onBackClick = onNavigateBack,
@@ -94,7 +94,7 @@ fun WhatToDoScreen(
                         }
                     )
                 } else {
-                    SecondaryTopAppBar(
+                    SettingsTopAppBar(
                         modifier = modifier,
                         title = stringResource(id = R.string.game_settings),
                         onNavigationClick = onNavigateBack

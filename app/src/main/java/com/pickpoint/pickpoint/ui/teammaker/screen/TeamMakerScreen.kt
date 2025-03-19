@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.pickpoint.pickpoint.R
-import com.pickpoint.pickpoint.ui.common.component.RandomPickerTopAppBar
-import com.pickpoint.pickpoint.ui.common.component.SecondaryTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.GameTopAppBar
+import com.pickpoint.pickpoint.ui.common.component.SettingsTopAppBar
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerGameComponent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerSettingContent
 import com.pickpoint.pickpoint.ui.teammaker.component.TeamMakerTryAgain
@@ -34,7 +34,7 @@ fun TeamMakerScreen(
         modifier = modifier,
         topBar = {
             if (confirmed) {
-                RandomPickerTopAppBar(
+                GameTopAppBar(
                     title = stringResource(id = R.string.team_maker),
                     onBackClick = onNavigateBack,
                     onSettingClick = {
@@ -42,7 +42,7 @@ fun TeamMakerScreen(
                     }
                 )
             } else {
-                SecondaryTopAppBar(
+                SettingsTopAppBar(
                     title = stringResource(id = R.string.game_settings),
                     onNavigationClick = onNavigateBack
                 )

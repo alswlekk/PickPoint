@@ -1,8 +1,8 @@
 package com.pickpoint.pickpoint.ui.common.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.theme.*
 
@@ -41,29 +40,30 @@ fun MainTopAppBar(
         color = MaterialTheme.colorScheme.background,
         shadowElevation = 4.dp
     ) {
-        Row(
+        Box(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
                 onClick = leftIconClick,
                 modifier = Modifier
+                    .align(Alignment.CenterStart)
                     .size(24.dp)
             ) {
                 leftIcon()
             }
-            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = title,
                 color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier.padding(end = 20.dp),
+                modifier = Modifier
+                    .align(Alignment.Center),
                 style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.weight(1f))
             IconButton(
                 onClick = rightIconClick,
                 modifier = Modifier
+                    .align(Alignment.CenterEnd)
                     .size(24.dp)
             ) {
                 rightIcon()
@@ -73,7 +73,7 @@ fun MainTopAppBar(
 }
 
 @Composable
-fun SecondaryTopAppBar(
+fun SettingsTopAppBar(
     modifier: Modifier = Modifier,
     title: String,
     onNavigationClick: () -> Unit
@@ -112,11 +112,11 @@ fun SecondaryTopAppBar(
 }
 
 @Composable
-fun RandomPickerTopAppBar(
+fun GameTopAppBar(
     modifier: Modifier = Modifier,
-    title : String,
-    onBackClick : () -> Unit,
-    onSettingClick : () -> Unit
+    title: String,
+    onBackClick: () -> Unit,
+    onSettingClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -125,14 +125,16 @@ fun RandomPickerTopAppBar(
         color = MaterialTheme.colorScheme.background,
         shadowElevation = 4.dp
     ) {
-        Row(
+        Box(
             modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
                 onClick = onBackClick,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier
+                    .size(24.dp)
+                    .align(Alignment.CenterStart)
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
@@ -140,18 +142,18 @@ fun RandomPickerTopAppBar(
                     tint = MaterialTheme.colorScheme.secondary
                 )
             }
-            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = title,
                 color = MaterialTheme.colorScheme.secondary,
-                modifier = Modifier.padding(end = 20.dp),
+                modifier = Modifier
+                    .align(Alignment.Center),
                 style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.weight(1f))
             IconButton(
                 onClick = onSettingClick,
                 modifier = Modifier
                     .size(48.dp)
+                    .align(Alignment.CenterEnd)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_main_top_setting),
@@ -191,7 +193,7 @@ fun MainTopAppBarPreview() {
 @Composable
 fun SecondaryTopAppBarPreview() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        SecondaryTopAppBar(title = "Settings", onNavigationClick = {})
+        SettingsTopAppBar(title = "Settings", onNavigationClick = {})
     }
 }
 
@@ -199,7 +201,7 @@ fun SecondaryTopAppBarPreview() {
 @Composable
 fun RandomPickerTopAppBarPreview() {
     PickPointTheme(theme = AppTheme.LIGHT_PROTOTYPE, dynamicColor = false) {
-        RandomPickerTopAppBar(
+        GameTopAppBar(
             title = "Random Picker",
             onBackClick = {},
             onSettingClick = {}
