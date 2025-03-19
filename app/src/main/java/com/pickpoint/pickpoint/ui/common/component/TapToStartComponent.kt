@@ -8,7 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.theme.PickPointTheme
 
@@ -20,7 +22,7 @@ fun TapToStartComponent(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Tap to Start!",
+            text = stringResource(R.string.tap_to_start),
             color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.displayLarge
         )
