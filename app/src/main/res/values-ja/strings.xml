@@ -19,11 +19,11 @@
     <string name="language">言語</string>
 
     <!-- 다른 문자열들... -->
-    <string name="reset">Reset</string>
-    <string name="apply">Apply</string>
+    <string name="reset">リセット</string>
+    <string name="apply">適用 </string>
 
     <!-- HomeTopMenu -->
-    <string name="report">報告</string>
+    <string name="review">レビューを書く</string>
 
     <!-- HomeScreen -->
     <string name="pick_point">Pick Point</string>
@@ -36,11 +36,11 @@
     <!-- Setting Content -->
     <string name="points_to_pick">選択するポイント</string>
     <string name="total_teams">チームの合計数</string>
-    <string name="total_tasks">Total Tasks</string>
+    <string name="total_tasks">すべてのタスク数</string>
     <!-- Game Component -->
     <string name="retry">再試行</string>
-    <string name="results">Results</string>
-    <string name="see_result">See Result</string>
+    <string name="results">結果</string>
+    <string name="see_result">結果を見る</string>
     <!-- Try Again -->
     <string name="try_again">もう一度試しますか？</string>
     <!-- Screen -->
