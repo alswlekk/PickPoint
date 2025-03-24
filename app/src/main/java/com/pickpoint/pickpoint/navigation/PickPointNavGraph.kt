@@ -1,5 +1,7 @@
 package com.pickpoint.pickpoint.navigation
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -7,6 +9,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -18,6 +21,7 @@ import com.pickpoint.pickpoint.ui.randompicker.screen.RandomPickerScreen
 import com.pickpoint.pickpoint.ui.teammaker.screen.TeamMakerScreen
 import com.pickpoint.pickpoint.ui.theme.AppTheme
 import com.pickpoint.pickpoint.ui.whattodo.screen.WhatToDoScreen
+import androidx.core.net.toUri
 
 @Composable
 fun PickPointNavGraph(
@@ -26,6 +30,9 @@ fun PickPointNavGraph(
     dataStoreManager: DataStoreManager,
     changeTheme: (AppTheme) -> Unit = {}
 ) {
+
+    val context = LocalContext.current
+
     NavHost(
         navController = navController,
         startDestination = Routes.Home.route
@@ -34,7 +41,14 @@ fun PickPointNavGraph(
             HomeScreen(
                 modifier = modifier,
                 onNavigateToSettings = { navController.navigate(Routes.Settings.route) },
-                onNavigateToReport = { navController.navigate(Routes.Report.route) },
+                onNavigateToReport = {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        "https://play.google.com/store/apps/details?id=com.pickpoint.pickpoint".toUri()
+                    )
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(intent)
+                },
                 onNavigateToRandomPicker = { navController.navigate(Routes.RandomPicker.route) },
                 onNavigateToTeamMaker = { navController.navigate(Routes.TeamMaker.route) },
                 onNavigateToWhatToDo = { navController.navigate(Routes.WhatToDo.route) }
