@@ -2,9 +2,11 @@ package com.pickpoint.pickpoint.navigation
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,8 +32,7 @@ fun PickPointNavGraph(
     ) {
         composable(route = Routes.Home.route) {
             HomeScreen(
-                modifier = modifier
-                    .windowInsetsPadding(WindowInsets.systemBars),
+                modifier = modifier,
                 onNavigateToSettings = { navController.navigate(Routes.Settings.route) },
                 onNavigateToReport = { navController.navigate(Routes.Report.route) },
                 onNavigateToRandomPicker = { navController.navigate(Routes.RandomPicker.route) },
