@@ -21,9 +21,11 @@
     <!-- 다른 문자열들... -->
     <string name="reset">Reset</string>
     <string name="apply">Apply</string>
+    <string name="app_qr_code">App QR Code</string>
+    <string name="app_qr_code_desc">Scan to download the app</string>
 
     <!--  HomeTopMenu  -->
-    <string name="report">Report</string>
+    <string name="review">Review</string>
 
     <!--  HomeScreen  -->
     <string name="pick_point">Pick Point</string>

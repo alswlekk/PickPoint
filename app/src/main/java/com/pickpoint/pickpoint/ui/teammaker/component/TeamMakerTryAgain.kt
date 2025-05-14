@@ -44,7 +44,8 @@ fun TeamMakerTryAgain(
             Text(
                 text = stringResource(id = R.string.try_again),
                 style = MaterialTheme.typography.displayLarge,
-                color = MaterialTheme.colorScheme.onPrimary
+                color = MaterialTheme.colorScheme.onPrimary,
+                fontSize = 45.sp,
             )
             IconButton(
                 modifier = Modifier

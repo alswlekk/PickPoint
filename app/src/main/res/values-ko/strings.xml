@@ -5,7 +5,7 @@
     <!--  Theme Setting  -->
     <string name="prototype">프로토타입</string>
     <string name="coming_soon">곧 출시 예정…</string>
-    
+
     <!--  Language Setting  -->
     <string name="korean">한국어 (대한민국)</string>
     <string name="english">English</string>
@@ -21,9 +21,11 @@
     <!-- 다른 문자열들... -->
     <string name="reset">초기화</string>
     <string name="apply">적용하기</string>
+    <string name="app_qr_code">앱 QR 코드</string>
+    <string name="app_qr_code_desc">스캔하여 앱 다운로드</string>
 
     <!-- HomeTopMenu -->
-    <string name="report">신고</string>
+    <string name="review">리뷰하기</string>
 
     <!-- HomeScreen -->
     <string name="pick_point">Pick Point</string>

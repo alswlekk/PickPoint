@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,8 +43,8 @@ fun TopMenu(
                 onClick = onSettingsClick
             )
             NavigationItem(
-                icon = Icons.Default.Info,
-                text = stringResource(R.string.report),
+                icon = Icons.Default.Star,
+                text = stringResource(R.string.review),
                 onClick = onReportClick
             )
         }

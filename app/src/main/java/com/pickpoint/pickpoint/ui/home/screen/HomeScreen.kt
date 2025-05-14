@@ -1,5 +1,8 @@
 package com.pickpoint.pickpoint.ui.home.screen
 
+import android.R.attr.contentDescription
+import android.util.Log.e
+import android.util.Log.i
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +35,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.pickpoint.pickpoint.R
 import com.pickpoint.pickpoint.ui.common.component.MainTopAppBar
@@ -47,7 +51,8 @@ fun HomeScreen(
     onNavigateToReport: () -> Unit = {},
     onNavigateToRandomPicker: () -> Unit = {},
     onNavigateToTeamMaker: () -> Unit = {},
-    onNavigateToWhatToDo: () -> Unit = {}
+    onNavigateToWhatToDo: () -> Unit = {},
+    onNavigateToQRCode: () -> Unit = {},
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
 
@@ -79,7 +84,15 @@ fun HomeScreen(
                             tint = MaterialTheme.colorScheme.secondary
                         )
                     },
-                    leftIconClick = { menuExpanded = !menuExpanded }
+                    leftIconClick = { menuExpanded = !menuExpanded },
+                    rightIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_qr_code),
+                            contentDescription = "QR Code",
+                            tint = MaterialTheme.colorScheme.secondary
+                        )
+                    },
+                    rightIconClick = { onNavigateToQRCode() }
                 )
 
                 Spacer(modifier = Modifier.weight(1f))

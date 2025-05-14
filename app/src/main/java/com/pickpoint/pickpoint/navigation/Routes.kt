@@ -10,4 +10,6 @@ sealed class Routes(val route: String) {
     object TeamMaker : Routes("team_maker")
 
     object WhatToDo : Routes("what_to_do")
+
+    object QRCode : Routes("qr_code")
 }
