@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 // homeViewModel을 전달
                 PickPointNavGraph(
                     modifier = Modifier
-                        .windowInsetsPadding(WindowInsets.systemBars),
+                        .systemBarsPadding(),
                     navController = navController,
                     dataStoreManager = dataStoreManager,
                     changeTheme = { newTheme ->
